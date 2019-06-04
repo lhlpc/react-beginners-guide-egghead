@@ -1,0 +1,21 @@
+<div id="root_js"></div>
+<div id="root_react"></div>
+<script src="https://unpkg.com/react@16.3.1/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@16.3.1/umd/react-dom.production.min.js"></script>
+
+<script type="text/javascript">   
+//Rendering with JS API
+const rootJSElement = document.getElementById('root_js');
+const elementJS = document.createElement('div');
+elementJS.textContent = "Hello, JS world!"
+elementJS.className = "container";
+rootJSElement.appendChild(elementJS);
+
+// Rendering with pure React
+  const rootElement = document.getElementById("root_react");
+  const reactElement = React.createElement("div", {
+    className: "container",
+    children: ["Hello, React! ", "How r u?"]
+  });
+  ReactDOM.render(reactElement, rootElement);
+</script>

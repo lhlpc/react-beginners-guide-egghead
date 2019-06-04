@@ -1,0 +1,44 @@
+<div id="root"></div>
+<div id="root2"></div>
+
+<script src="https://unpkg.com/react@16.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+<script src="https://unpkg.com/prop-types@15.6.1/prop-types.js"></script>
+
+<!-- ----------------- Without JSX ----------------- -->
+<script type="text/babel">
+  function Message({ message }) {
+
+
+    const element = 
+      message ? React.createElement('div', null, message)
+              : React.createElement('div', null, 'No message');
+
+    return element;
+  }
+
+  // It should show an error since lastName should be a string
+  const rootElement = document.getElementById("root");
+  const element = <Message message="Hello, pure React!" />;
+  ReactDOM.render(element, rootElement);
+</script>
+
+
+<!-- ----------------- With JSX ----------------- -->
+<script type="text/babel">
+  function Message({ message }) {
+    const element = (
+      <div>
+        {message ? (<div> {message} </div>) : (<div>No message</div>)}
+      </div>
+    );
+
+    return element;
+  }
+
+  // It should show an error since lastName should be a string
+  const rootElement = document.getElementById("root2");
+  const element = <Message message="Hello, React with JSX!" />;
+  ReactDOM.render(element, rootElement);
+</script>

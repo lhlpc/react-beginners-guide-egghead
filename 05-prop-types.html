@@ -1,0 +1,32 @@
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@16.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+<script src="https://unpkg.com/prop-types@15.6.1/prop-types.js"></script>
+
+<script type="text/babel">
+  const rootElement = document.getElementById("root");
+
+  class FirstClass extends React.Component {
+    // PropTypes lib only works on development react, not on production.
+    static propTypes = {
+      firstName: PropTypes.string.isRequired,
+      lastName: PropTypes.string.isRequired
+    };
+
+    render() {
+      const { firstName, lastName } = this.props;
+
+      return (
+        <div>
+          Hello {firstName} {lastName}
+        </div>
+      );
+    }
+  }
+
+// It should show an error since lastName should be a string
+  const element = <FirstClass firstName="Henrique" lastName={true} />;
+  ReactDOM.render(element, rootElement);
+</script>
