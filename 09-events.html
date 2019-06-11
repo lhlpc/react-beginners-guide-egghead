@@ -1,0 +1,50 @@
+<div id="root"></div>
+<div id="root2"></div>
+
+<script src="https://unpkg.com/react@16.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+<script src="https://unpkg.com/prop-types@15.6.1/prop-types.js"></script>
+
+<!-- ----------------- With JSX ----------------- -->
+<script type="text/babel">
+  const rootElement2 = document.getElementById("root2");
+  const state = { eventCount: 0, username: "" };
+
+  renderApp();
+  setState({ eventCount: 10 });
+
+  // Functions
+
+  function renderApp() {
+    ReactDOM.render(<App />, rootElement2);
+  }
+
+  function incrementCounter() {
+    setState({ eventCount: state.eventCount + 1 });
+  }
+
+  function updateUsername(event) {
+    setState({ username: event.target.value });
+  }
+
+  function App() {
+    return (
+      <div>
+        <button onClick={incrementCounter}>Click</button>
+        <p>{state.eventCount}</p>
+        <div>
+          <input onBlur={updateUsername} />
+        </div>
+        <div>
+          <p>{state.username}</p>
+        </div>
+      </div>
+    );
+  }
+
+  function setState(newState) {
+    Object.assign(state, newState);
+    renderApp();
+  }
+</script>

@@ -8,37 +8,33 @@
 
 <!-- ----------------- Without JSX ----------------- -->
 <script type="text/babel">
-  function Message({ message }) {
-
-
-    const element = 
-      message ? React.createElement('div', null, message)
-              : React.createElement('div', null, 'No message');
-
-    return element;
-  }
-
   // It should show an error since lastName should be a string
   const rootElement = document.getElementById("root");
-  const element = <Message message="Hello, pure React!" />;
-  ReactDOM.render(element, rootElement);
+  
+  tick();
+  setInterval(tick, 1000);
+
+  function tick() {
+    const time = new Date().toLocaleTimeString();
+    const element = React.createElement('div', null, `Its ${time}`);
+    ReactDOM.render(element, rootElement);
+  }
+
 </script>
 
 
 <!-- ----------------- With JSX ----------------- -->
 <script type="text/babel">
-  function Message({ message }) {
-    const element = (
-      <div>
-        {message ? (<div> {message} </div>) : (<div>No message</div>)}
-      </div>
-    );
-
-    return element;
-  }
 
   // It should show an error since lastName should be a string
   const rootElement = document.getElementById("root2");
-  const element = <Message message="Hello, React with JSX!" />;
-  ReactDOM.render(element, rootElement);
+  tick();
+  setInterval(tick, 1000);
+
+  // Only the time variable will be changed on the template, instead of the entire div element
+  function tick() {
+    const time = new Date().toLocaleTimeString();
+    const element = <div>It's {time}</div>
+    ReactDOM.render(element, rootElement)
+  }
 </script>
